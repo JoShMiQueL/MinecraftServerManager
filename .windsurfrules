@@ -45,4 +45,14 @@
 - Use Git for version control.
 - Use conventional commits for commit messages.
 - Use semantic versioning for releases.
+- When committing changes:
+  - Analyze the codebase to identify logical groupings
+  - Group related files and changes together in meaningful commits
+  - Follow this commit order:
+    1. Infrastructure/Config changes
+    2. Core functionality changes
+    3. Feature component changes
+    4. UI/Style changes
+  - Use descriptive commit messages with proper type and scope
+  - Ensure each commit represents a complete, working state
 
