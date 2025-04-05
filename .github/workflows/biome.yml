@@ -6,6 +6,8 @@ on:
 
 jobs:
   quality:
+    env:
+      HUSKY: 0
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
