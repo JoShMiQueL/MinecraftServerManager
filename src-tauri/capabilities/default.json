@@ -1,0 +1,29 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "Capability for the main window",
+  "windows": ["main"],
+  "permissions": [
+    "core:default",
+    "opener:default",
+    "os:default",
+    "shell:default",
+    {
+      "identifier": "shell:allow-spawn",
+      "allow": [
+        {
+          "name": "api",
+          "cmd": "bun",
+          "args": ["run", "../src/api/index.ts"]
+        }
+      ]
+    },
+    "shell:allow-kill",
+    "shell:allow-stdin-write",
+    {
+      "identifier": "fs:allow-read-text-file-lines",
+      "allow": ["**/*"]
+    },
+    "dialog:default"
+  ]
+}
