@@ -1,4 +1,4 @@
-import '@/index.css';
+import '@/app/index.css';
 import { Overview } from '@/components/Overview';
 import { ServiceCard } from '@/components/ServiceCard';
 import { ServiceLogViewer } from '@/components/service-log/viewer';

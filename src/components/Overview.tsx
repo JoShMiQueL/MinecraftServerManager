@@ -2,7 +2,7 @@ import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/ca
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Circle, Clock, type LucideProps, Server } from 'lucide-react';
 
-import { cn } from '@/lib/utils';
+import { cn } from '@/utils/tw-utils';
 
 function CardItem({
   title = 'Placeholder',

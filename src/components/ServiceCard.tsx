@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils';
+import { cn } from '@/utils/tw-utils';
 import { type Child, Command } from '@tauri-apps/plugin-shell';
 import { Circle, Play, RefreshCw, Server, Square } from 'lucide-react';
 import { useState } from 'react';
