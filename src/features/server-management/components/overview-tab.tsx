@@ -1,20 +1,15 @@
 import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Circle, Clock, type LucideProps, Server } from 'lucide-react';
-
+import { Circle, Clock, Server } from 'lucide-react';
 import { cn } from '@/utils/tw-utils';
+import { CardItemProps } from '../types';
 
 function CardItem({
   title = 'Placeholder',
   icon: Icon = Clock,
   description = 'Manage and monitor your API server instance',
   iconProps = {}
-}: {
-  readonly title?: string;
-  readonly icon?: React.ComponentType<LucideProps>;
-  readonly description?: string;
-  readonly iconProps?: Partial<LucideProps>;
-}) {
+}: CardItemProps) {
   return (
     <Card>
       <CardHeader>

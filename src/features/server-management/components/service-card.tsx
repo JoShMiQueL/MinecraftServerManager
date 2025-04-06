@@ -4,12 +4,9 @@ import { Circle, Play, RefreshCw, Server, Square } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { CardContent, CardDescription, CardHeader, CardTitle, Card } from '@/components/ui/card';
+import { ServiceCardProps, ServiceStateProps, ServiceStateType } from '../types';
 
-function ServiceState({
-  className,
-  state,
-  ...props
-}: React.ComponentPropsWithRef<'div'> & { state: string }) {
+function ServiceState({ className, state, ...props }: ServiceStateProps) {
   const stateColorMap = {
     Running: 'var(--color-green-500)',
     Stopped: 'var(--color-red-500)',
@@ -25,22 +22,6 @@ function ServiceState({
       {state}
     </div>
   );
-}
-
-export type ServiceStateType =
-  | 'Running'
-  | 'Stopped'
-  | 'Restarting'
-  | 'Stopping'
-  | 'Starting'
-  | 'N/A';
-
-interface ServiceCardProps {
-  readonly title?: string;
-  readonly description?: string;
-  readonly initialState?: ServiceStateType;
-  readonly commandName: string;
-  readonly onLog?: (log: string) => void;
 }
 
 export function ServiceCard({
