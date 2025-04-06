@@ -1,8 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-
-interface UseServiceLogsProps {
-  readonly initialLogs?: readonly string[];
-}
+import { UseServiceLogsProps } from '../types';
 
 export function useServiceLogs({ initialLogs = [] }: UseServiceLogsProps) {
   const [logs, setLogs] = useState<readonly string[]>(initialLogs);
@@ -10,11 +7,6 @@ export function useServiceLogs({ initialLogs = [] }: UseServiceLogsProps) {
   useEffect(() => {
     setLogs(initialLogs);
   }, [initialLogs]);
-
-  const refreshLogs = useCallback(() => {
-    const newLog = `[${new Date().toISOString()}] [INFO] Log refreshed`;
-    setLogs((currentLogs) => [...currentLogs, newLog]);
-  }, []);
 
   const downloadLogs = useCallback(() => {
     const blob = new Blob([logs.join('\n')], { type: 'text/plain' });
@@ -30,7 +22,6 @@ export function useServiceLogs({ initialLogs = [] }: UseServiceLogsProps) {
 
   return {
     logs,
-    refreshLogs,
     downloadLogs
   };
 }

@@ -4,14 +4,14 @@ import { useServiceLogs } from '../hooks';
 import { ConsoleViewer } from '@/features/console/components';
 import type { ServiceLogViewerProps } from '../types';
 
-export function ServiceLogViewer({ title, initialLogs = [], onGoLive }: ServiceLogViewerProps) {
-  const { logs, refreshLogs, downloadLogs } = useServiceLogs({ initialLogs });
+export function ServiceLogViewer({ title, initialLogs = [] }: ServiceLogViewerProps) {
+  const { logs, downloadLogs } = useServiceLogs({ initialLogs });
 
   return (
     <Card>
       <CardHeader className="flex items-center justify-between">
         <CardTitle className="text-2xl tracking-tight">{title}</CardTitle>
-        <ServiceLogControls onRefresh={refreshLogs} onDownload={downloadLogs} onGoLive={onGoLive} />
+        <ServiceLogControls onDownload={downloadLogs} />
       </CardHeader>
       <CardContent>
         <ConsoleViewer logs={logs} />
