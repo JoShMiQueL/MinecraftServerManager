@@ -13,9 +13,3 @@ export interface FontSizeSelectorProps {
 export interface ConsoleViewerProps {
   readonly logs?: readonly string[];
 }
-
-export interface ServiceLogViewerProps {
-  readonly title: string;
-  readonly initialLogs?: readonly string[];
-  readonly onGoLive?: () => void;
-}

@@ -6,7 +6,7 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select';
-import type { FontSizeOption, FontSizeSelectorProps } from '@/types/log-console';
+import type { FontSizeOption, FontSizeSelectorProps } from '../types';
 
 const fontSizes: readonly FontSizeOption[] = [
   { value: 'xs', label: 'Small' },

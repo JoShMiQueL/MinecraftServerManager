@@ -1,10 +1,10 @@
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
-import { useConsole } from '@/hooks/console';
-import type { ConsoleViewerProps } from '@/types/log-console';
+import { useConsole } from '../hooks';
+import type { ConsoleViewerProps } from '../types';
 import { Eraser, Search } from 'lucide-react';
-import { FontSizeSelector } from './FontSizeSelector';
+import { FontSizeSelector } from '../components/font-size-selector';
 
 export function ConsoleViewer({ logs = [] }: ConsoleViewerProps) {
   const {
@@ -56,10 +56,10 @@ export function ConsoleViewer({ logs = [] }: ConsoleViewerProps) {
           }
         }}
       >
-        {filteredLogs.map((log) => {
+        {filteredLogs.map((log: string) => {
           const timestamp = log.match(/\[(.*?)\]/)?.[1] || '';
           const key = `log-${timestamp}-${log.slice(0, 20)}`;
-          const parts = log.split(/(https?:\/\/\S+)/).map((part) => {
+          const parts = log.split(/(https?:\/\/\S+)/).map((part: string) => {
             if (part.match(/^https?:\/\//)) {
               return (
                 <a key={`link-${part}`} href={part} target="_blank" rel="noopener noreferrer">

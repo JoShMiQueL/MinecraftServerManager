@@ -1,8 +1,8 @@
-import { ConsoleViewer } from '@/components/console';
-import { ServiceLogControls } from '@/components/service-log/controls';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { useServiceLogs } from '@/hooks/service-log';
-import type { ServiceLogViewerProps } from '@/types/log-console';
+import { ServiceLogControls } from './service-log-controls';
+import { useServiceLogs } from '../hooks';
+import { ConsoleViewer } from '@/features/console/components';
+import type { ServiceLogViewerProps } from '../types';
 
 export function ServiceLogViewer({ title, initialLogs = [], onGoLive }: ServiceLogViewerProps) {
   const { logs, refreshLogs, downloadLogs } = useServiceLogs({ initialLogs });

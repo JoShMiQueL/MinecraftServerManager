@@ -2,8 +2,8 @@ import { cn } from '@/utils/tw-utils';
 import { type Child, Command } from '@tauri-apps/plugin-shell';
 import { Circle, Play, RefreshCw, Server, Square } from 'lucide-react';
 import { useState } from 'react';
-import { Button } from './ui/button';
-import { CardContent, CardDescription, CardHeader, CardTitle, Card } from './ui/card';
+import { Button } from '@/components/ui/button';
+import { CardContent, CardDescription, CardHeader, CardTitle, Card } from '@/components/ui/card';
 
 function ServiceState({
   className,
@@ -36,11 +36,11 @@ export type ServiceStateType =
   | 'N/A';
 
 interface ServiceCardProps {
-  title?: string;
-  description?: string;
-  initialState?: ServiceStateType;
-  commandName: string;
-  onLog?: (log: string) => void;
+  readonly title?: string;
+  readonly description?: string;
+  readonly initialState?: ServiceStateType;
+  readonly commandName: string;
+  readonly onLog?: (log: string) => void;
 }
 
 export function ServiceCard({

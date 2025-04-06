@@ -1,9 +1,9 @@
 import '@/app/index.css';
-import { Overview } from '@/components/Overview';
-import { ServiceCard } from '@/components/ServiceCard';
-import { ServiceLogViewer } from '@/components/service-log/viewer';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useState } from 'react';
+import { OverviewTab } from '@/features/server-management/components/overview-tab';
+import { ServiceCard } from '@/features/server-management/components/service-card';
+import { ServiceLogViewer } from '@/features/server-management/components/service-log-viewer';
 
 function App() {
   const [apiLogs, setApiLogs] = useState<string[]>([]);
@@ -36,7 +36,7 @@ function App() {
             <TabsTrigger value="api">API</TabsTrigger>
           </TabsList>
           <TabsContent value="overview">
-            <Overview />
+            <OverviewTab />
           </TabsContent>
           <TabsContent value="api">
             <ServiceLogViewer title="API Server Logs" initialLogs={apiLogs} />

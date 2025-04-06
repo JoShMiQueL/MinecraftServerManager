@@ -10,10 +10,10 @@ function CardItem({
   description = 'Manage and monitor your API server instance',
   iconProps = {}
 }: {
-  title?: string;
-  icon?: React.ComponentType<LucideProps>;
-  description?: string;
-  iconProps?: Partial<LucideProps>;
+  readonly title?: string;
+  readonly icon?: React.ComponentType<LucideProps>;
+  readonly description?: string;
+  readonly iconProps?: Partial<LucideProps>;
 }) {
   return (
     <Card>
@@ -32,7 +32,7 @@ function CardItem({
   );
 }
 
-export function Overview() {
+export function OverviewTab() {
   return (
     <Tabs defaultValue="api" className="mt-2">
       <TabsList className="grid w-full grid-cols-2">

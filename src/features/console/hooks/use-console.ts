@@ -1,4 +1,4 @@
-import type { FontSize } from '@/types/log-console';
+import type { FontSize } from '../types';
 import { useCallback, useEffect, useState } from 'react';
 
 export function useConsole(initialLogs: readonly string[] = []) {
