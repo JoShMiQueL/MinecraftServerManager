@@ -16,7 +16,7 @@ export function ConsoleViewer({ logs = [] }: ConsoleViewerProps) {
     autoScroll,
     setAutoScroll,
     clearLogs
-  } = useConsole(logs);
+  } = useConsole({ initialLogs: logs });
 
   return (
     <>

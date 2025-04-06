@@ -1,7 +1,7 @@
-import type { FontSize } from '../types';
 import { useCallback, useEffect, useState } from 'react';
+import type { FontSize, UseConsoleProps, UseConsoleReturn } from '../types';
 
-export function useConsole(initialLogs: readonly string[] = []) {
+export function useConsole({ initialLogs = [] }: UseConsoleProps = {}): UseConsoleReturn {
   const [logList, setLogList] = useState<readonly string[]>(initialLogs);
   const [lastKnownLength, setLastKnownLength] = useState(initialLogs.length);
   const [fontSize, setFontSize] = useState<FontSize>(() => {
