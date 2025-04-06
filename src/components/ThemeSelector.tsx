@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Moon, Sun } from "lucide-react";
 
-function ThemeSelector() {
+export function ThemeSelector() {
   const { setTheme } = useTheme();
   return (
     <DropdownMenu>
@@ -27,5 +27,3 @@ function ThemeSelector() {
     </DropdownMenu>
   );
 }
-
-export default ThemeSelector;
