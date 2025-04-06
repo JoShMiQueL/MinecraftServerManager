@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from 'react';
 
 interface UseServiceLogsProps {
   readonly initialLogs?: readonly string[];
@@ -17,11 +17,11 @@ export function useServiceLogs({ initialLogs = [] }: UseServiceLogsProps) {
   }, []);
 
   const downloadLogs = useCallback(() => {
-    const blob = new Blob([logs.join("\n")], { type: "text/plain" });
+    const blob = new Blob([logs.join('\n')], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
+    const a = document.createElement('a');
     a.href = url;
-    a.download = "server-logs.txt";
+    a.download = 'server-logs.txt';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -31,6 +31,6 @@ export function useServiceLogs({ initialLogs = [] }: UseServiceLogsProps) {
   return {
     logs,
     refreshLogs,
-    downloadLogs,
+    downloadLogs
   };
 }

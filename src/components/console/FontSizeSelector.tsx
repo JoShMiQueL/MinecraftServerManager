@@ -4,14 +4,14 @@ import {
   SelectGroup,
   SelectItem,
   SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import type { FontSizeOption, FontSizeSelectorProps } from "@/types/log-console";
+  SelectValue
+} from '@/components/ui/select';
+import type { FontSizeOption, FontSizeSelectorProps } from '@/types/log-console';
 
 const fontSizes: readonly FontSizeOption[] = [
-  { value: "xs", label: "Small" },
-  { value: "sm", label: "Medium" },
-  { value: "base", label: "Large" },
+  { value: 'xs', label: 'Small' },
+  { value: 'sm', label: 'Medium' },
+  { value: 'base', label: 'Large' }
 ] as const;
 
 export function FontSizeSelector({ fontSize, setFontSize }: FontSizeSelectorProps) {

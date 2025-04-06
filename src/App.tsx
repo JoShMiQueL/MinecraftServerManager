@@ -1,9 +1,9 @@
-import "@/index.css";
-import { Overview } from "@/components/Overview";
-import { ServiceCard } from "@/components/ServiceCard";
-import { ServiceLogViewer } from "@/components/service-log/viewer";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useState } from "react";
+import '@/index.css';
+import { Overview } from '@/components/Overview';
+import { ServiceCard } from '@/components/ServiceCard';
+import { ServiceLogViewer } from '@/components/service-log/viewer';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { useState } from 'react';
 
 function App() {
   const [apiLogs, setApiLogs] = useState<string[]>([]);

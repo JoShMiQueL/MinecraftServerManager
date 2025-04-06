@@ -1,59 +1,65 @@
-import { cn } from "@/lib/utils";
-import { type Child, Command } from "@tauri-apps/plugin-shell";
-import { Circle, Play, RefreshCw, Server, Square } from "lucide-react";
-import { useState } from "react";
-import { Button } from "./ui/button";
-import { CardContent, CardDescription, CardHeader, CardTitle, Card as _Card } from "./ui/card";
+import { cn } from '@/lib/utils';
+import { type Child, Command } from '@tauri-apps/plugin-shell';
+import { Circle, Play, RefreshCw, Server, Square } from 'lucide-react';
+import { useState } from 'react';
+import { Button } from './ui/button';
+import { CardContent, CardDescription, CardHeader, CardTitle, Card } from './ui/card';
 
 function ServiceState({
   className,
   state,
   ...props
-}: React.ComponentPropsWithRef<"div"> & { state: string }) {
+}: React.ComponentPropsWithRef<'div'> & { state: string }) {
   const stateColorMap = {
-    Running: "var(--color-green-500)",
-    Stopped: "var(--color-red-500)",
-    Restarting: "var(--color-yellow-500)",
-    Stopping: "var(--color-orange-500)",
-    Starting: "var(--color-blue-500)",
-    "N/A": "var(--color-gray-500)",
+    Running: 'var(--color-green-500)',
+    Stopped: 'var(--color-red-500)',
+    Restarting: 'var(--color-yellow-500)',
+    Stopping: 'var(--color-orange-500)',
+    Starting: 'var(--color-blue-500)',
+    'N/A': 'var(--color-gray-500)'
   };
-  const stateColor = stateColorMap[state as keyof typeof stateColorMap] || stateColorMap["N/A"];
+  const stateColor = stateColorMap[state as keyof typeof stateColorMap] || stateColorMap['N/A'];
   return (
-    <div className={cn("flex items-center gap-2 mt-2 font-medium", className)} {...props}>
+    <div className={cn('flex items-center gap-2 mt-2 font-medium', className)} {...props}>
       <Circle className="size-3.5" color={stateColor} fill={stateColor} />
       {state}
     </div>
   );
 }
 
-export type ServiceState = "Running" | "Stopped" | "Restarting" | "Stopping" | "Starting" | "N/A";
+export type ServiceStateType =
+  | 'Running'
+  | 'Stopped'
+  | 'Restarting'
+  | 'Stopping'
+  | 'Starting'
+  | 'N/A';
 
 interface ServiceCardProps {
   title?: string;
   description?: string;
-  initialState?: ServiceState;
+  initialState?: ServiceStateType;
   commandName: string;
   onLog?: (log: string) => void;
 }
 
 export function ServiceCard({
-  title = "Placeholder",
-  description = "Placeholder description",
-  initialState = "N/A",
+  title = 'Placeholder',
+  description = 'Placeholder description',
+  initialState = 'N/A',
   commandName,
-  onLog,
+  onLog
 }: ServiceCardProps) {
-  const [state, setState] = useState<ServiceState>(initialState);
+  const [state, setState] = useState<ServiceStateType>(initialState);
   const [process, setProcess] = useState<Child | null>(null);
 
-  const updateState = (newState: ServiceState) => {
+  const updateState = (newState: ServiceStateType) => {
     console.log(`[ServiceCard] State change: ${state} -> ${newState}`);
     setState(newState);
   };
 
   return (
-    <_Card className="font-[Geist_Sans] rounded-sm">
+    <Card className="font-[Geist_Sans] rounded-sm">
       <CardHeader>
         <CardTitle className="text-2xl tracking-tight flex items-center gap-2">
           <Server size={20} />
@@ -68,34 +74,34 @@ export function ServiceCard({
             className="flex-1 rounded-sm gap-3"
             variant="outlined_ghost"
             onClick={() => {
-              if (state === "Running" || state === "Starting") {
+              if (state === 'Running' || state === 'Starting') {
                 console.log(`[ServiceCard] Start blocked: current state is ${state}`);
                 return;
               }
               console.log(`[ServiceCard] Creating command: ${commandName}`);
               const command = Command.create(commandName);
-              updateState("Starting");
+              updateState('Starting');
               onLog?.(`[${new Date().toISOString()}] [INFO] Starting service...`);
               command.spawn().then((childProcess) => {
-                console.log("[ServiceCard] Process spawned");
+                console.log('[ServiceCard] Process spawned');
                 setProcess(childProcess);
-                command.stdout.on("data", (line) => {
+                command.stdout.on('data', (line) => {
                   console.log(`[ServiceCard] stdout: ${line}`);
                   if (line) {
                     onLog?.(`[${new Date().toISOString()}] [INFO] ${line}`);
                     const regex = /Server running at http:\/\/localhost:\d+/;
                     if (regex.test(line)) {
-                      updateState("Running");
+                      updateState('Running');
                     }
                   }
                 });
-                command.stderr.on("data", (line) => {
+                command.stderr.on('data', (line) => {
                   if (line) {
                     onLog?.(`[${new Date().toISOString()}] [ERROR] ${line}`);
                   }
                 });
-                command.on("close", () => {
-                  updateState("Stopped");
+                command.on('close', () => {
+                  updateState('Stopped');
                   setProcess(null);
                 });
               });
@@ -108,15 +114,15 @@ export function ServiceCard({
             className="flex-1 rounded-sm gap-3"
             variant="outlined_ghost"
             onClick={() => {
-              if (!process || state === "Stopped" || state === "Stopping") {
+              if (!process || state === 'Stopped' || state === 'Stopping') {
                 console.log(`[ServiceCard] Stop blocked: current state is ${state}`);
                 return;
               }
-              updateState("Stopping");
-              console.log("[ServiceCard] Killing process");
+              updateState('Stopping');
+              console.log('[ServiceCard] Killing process');
               onLog?.(`[${new Date().toISOString()}] [INFO] Stopping service...`);
               process.kill().then(() => {
-                updateState("Stopped");
+                updateState('Stopped');
                 setProcess(null);
                 onLog?.(`[${new Date().toISOString()}] [INFO] Service stopped`);
               });
@@ -129,38 +135,38 @@ export function ServiceCard({
             className="flex-1 rounded-sm gap-3"
             variant="outlined_ghost"
             onClick={() => {
-              if (!process || state !== "Running") {
+              if (!process || state !== 'Running') {
                 console.log(`[ServiceCard] Restart blocked: current state is ${state}`);
                 return;
               }
-              updateState("Restarting");
-              console.log("[ServiceCard] Killing process for restart");
+              updateState('Restarting');
+              console.log('[ServiceCard] Killing process for restart');
               process.kill().then(() => {
                 const command = Command.create(commandName);
                 command.spawn().then((childProcess) => {
                   setProcess(childProcess);
-                  command.stdout.on("data", (line) => {
+                  command.stdout.on('data', (line) => {
                     if (line) {
                       onLog?.(`[${new Date().toISOString()}] [INFO] ${line}`);
                       const regex = /Server running at http:\/\/localhost:\d+/;
                       if (regex.test(line)) {
-                        updateState("Running");
+                        updateState('Running');
                       }
                     }
                   });
-                  command.stderr.on("data", (line) => {
+                  command.stderr.on('data', (line) => {
                     if (line) {
                       onLog?.(`[${new Date().toISOString()}] [ERROR] ${line}`);
                     }
                   });
-                  command.on("close", () => {
-                    updateState("Stopped");
+                  command.on('close', () => {
+                    updateState('Stopped');
                     setProcess(null);
                   });
-                  command.on("error", (error) => {
+                  command.on('error', (error) => {
                     console.log(`[ServiceCard] Process error: ${error}`);
                     onLog?.(`[${new Date().toISOString()}] [ERROR] ${error}`);
-                    updateState("Stopped");
+                    updateState('Stopped');
                     setProcess(null);
                   });
                 });
@@ -172,6 +178,6 @@ export function ServiceCard({
           </Button>
         </div>
       </CardContent>
-    </_Card>
+    </Card>
   );
 }

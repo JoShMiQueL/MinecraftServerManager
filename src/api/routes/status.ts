@@ -1,11 +1,11 @@
-import { Hono } from "hono";
+import { Hono } from 'hono';
 
 const status = new Hono();
 
-status.get("/", (c) => {
+status.get('/', (c) => {
   return c.json({
-    status: "ok",
-    timestamp: new Date().toISOString(),
+    status: 'ok',
+    timestamp: new Date().toISOString()
   });
 });
 

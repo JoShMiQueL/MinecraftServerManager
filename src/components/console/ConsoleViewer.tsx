@@ -1,10 +1,10 @@
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Input } from "@/components/ui/input";
-import { useConsole } from "@/hooks/console";
-import type { ConsoleViewerProps } from "@/types/log-console";
-import { Eraser, Search } from "lucide-react";
-import { FontSizeSelector } from "./FontSizeSelector";
+import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Input } from '@/components/ui/input';
+import { useConsole } from '@/hooks/console';
+import type { ConsoleViewerProps } from '@/types/log-console';
+import { Eraser, Search } from 'lucide-react';
+import { FontSizeSelector } from './FontSizeSelector';
 
 export function ConsoleViewer({ logs = [] }: ConsoleViewerProps) {
   const {
@@ -15,7 +15,7 @@ export function ConsoleViewer({ logs = [] }: ConsoleViewerProps) {
     setSearchTerm,
     autoScroll,
     setAutoScroll,
-    clearLogs,
+    clearLogs
   } = useConsole(logs);
 
   return (
@@ -57,7 +57,7 @@ export function ConsoleViewer({ logs = [] }: ConsoleViewerProps) {
         }}
       >
         {filteredLogs.map((log) => {
-          const timestamp = log.match(/\[(.*?)\]/)?.[1] || "";
+          const timestamp = log.match(/\[(.*?)\]/)?.[1] || '';
           const key = `log-${timestamp}-${log.slice(0, 20)}`;
           const parts = log.split(/(https?:\/\/\S+)/).map((part) => {
             if (part.match(/^https?:\/\//)) {

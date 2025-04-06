@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
-import { Download, RefreshCw } from "lucide-react";
+import { Button } from '@/components/ui/button';
+import { Download, RefreshCw } from 'lucide-react';
 
 interface ServiceLogControlsProps {
   readonly onRefresh: () => void;

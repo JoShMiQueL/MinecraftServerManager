@@ -1,2 +1,2 @@
-export { ConsoleViewer } from "./ConsoleViewer";
-export { FontSizeSelector } from "./FontSizeSelector";
+export { ConsoleViewer } from './ConsoleViewer';
+export { FontSizeSelector } from './FontSizeSelector';

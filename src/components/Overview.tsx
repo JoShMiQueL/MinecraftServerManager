@@ -1,14 +1,14 @@
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Circle, Clock, type LucideProps, Server } from "lucide-react";
+import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Circle, Clock, type LucideProps, Server } from 'lucide-react';
 
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils';
 
-function _Card({
-  title = "Placeholder",
+function CardItem({
+  title = 'Placeholder',
   icon: Icon = Clock,
-  description = "Manage and monitor your API server instance",
-  iconProps = {},
+  description = 'Manage and monitor your API server instance',
+  iconProps = {}
 }: {
   title?: string;
   icon?: React.ComponentType<LucideProps>;
@@ -18,11 +18,11 @@ function _Card({
   return (
     <Card>
       <CardHeader>
-        <CardTitle className={cn("flex items-center justify-between")}>
+        <CardTitle className={cn('flex items-center justify-between')}>
           {title}
           <Icon
             size={16}
-            className={cn("text-muted-foreground/80", iconProps.className)}
+            className={cn('text-muted-foreground/80', iconProps.className)}
             {...iconProps}
           />
         </CardTitle>
@@ -40,13 +40,13 @@ export function Overview() {
         <TabsTrigger value="server">Minecraft Server</TabsTrigger>
       </TabsList>
       <TabsContent value="api" className="grid grid-cols-2 md:grid-cols-3 gap-4">
-        <_Card />
-        <_Card title="Cipote" description="WOWWW" icon={Server} />
-        <_Card
+        <CardItem />
+        <CardItem title="Cipote" description="WOWWW" icon={Server} />
+        <CardItem
           icon={Circle}
           iconProps={{
-            color: "var(--color-green-500)",
-            fill: "var(--color-green-500)",
+            color: 'var(--color-green-500)',
+            fill: 'var(--color-green-500)'
           }}
         />
       </TabsContent>

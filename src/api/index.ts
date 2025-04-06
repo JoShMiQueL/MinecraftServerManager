@@ -1,17 +1,17 @@
-import { Hono } from "hono";
-import minecraft from "./routes/minecraft";
-import status from "./routes/status";
+import { Hono } from 'hono';
+import minecraft from './routes/minecraft';
+import status from './routes/status';
 
 const app = new Hono();
 
-app.route("/status", status);
-app.route("/minecraft", minecraft);
+app.route('/status', status);
+app.route('/minecraft', minecraft);
 
-app.get("/", (c) =>
+app.get('/', (c) =>
   c.json({
-    message: "Minecraft Discord Bot API",
-    version: "1.0.0",
-  }),
+    message: 'Minecraft Discord Bot API',
+    version: '1.0.0'
+  })
 );
 
 async function startServer(initialPort = 3000, maxAttempts = 10) {
@@ -20,14 +20,14 @@ async function startServer(initialPort = 3000, maxAttempts = 10) {
     try {
       Bun.serve({
         fetch: app.fetch,
-        port,
+        port
       });
 
       return port;
     } catch (error) {
       if (!(error instanceof Error)) throw error;
       const nodeError = error as NodeJS.ErrnoException;
-      if (nodeError.code === "EADDRINUSE") {
+      if (nodeError.code === 'EADDRINUSE') {
         console.log(`Port ${port} is in use, trying port ${port + 1}...`);
         continue;
       }
@@ -42,6 +42,6 @@ startServer()
     console.log(`API Server running at http://localhost:${port}`);
   })
   .catch((error) => {
-    console.error("Failed to start server:", error.message);
+    console.error('Failed to start server:', error.message);
     process.exit(1);
   });

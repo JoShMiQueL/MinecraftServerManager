@@ -1,15 +1,15 @@
-import type { FontSize } from "@/types/log-console";
-import { useCallback, useEffect, useState } from "react";
+import type { FontSize } from '@/types/log-console';
+import { useCallback, useEffect, useState } from 'react';
 
 export function useConsole(initialLogs: readonly string[] = []) {
   const [logList, setLogList] = useState<readonly string[]>(initialLogs);
   const [lastKnownLength, setLastKnownLength] = useState(initialLogs.length);
   const [fontSize, setFontSize] = useState<FontSize>(() => {
-    const savedFontSize = localStorage.getItem("logConsoleFontSize");
-    return (savedFontSize as FontSize) || "sm";
+    const savedFontSize = localStorage.getItem('logConsoleFontSize');
+    return (savedFontSize as FontSize) || 'sm';
   });
   const [filteredLogs, setFilteredLogs] = useState(initialLogs);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
   const [autoScroll, setAutoScroll] = useState(true);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export function useConsole(initialLogs: readonly string[] = []) {
   }, [initialLogs, lastKnownLength]);
 
   useEffect(() => {
-    localStorage.setItem("logConsoleFontSize", fontSize);
+    localStorage.setItem('logConsoleFontSize', fontSize);
   }, [fontSize]);
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export function useConsole(initialLogs: readonly string[] = []) {
 
   const clearLogs = useCallback(() => {
     setLogList([]);
-    setSearchTerm("");
+    setSearchTerm('');
     setLastKnownLength(initialLogs.length);
   }, [initialLogs.length]);
 
@@ -45,6 +45,6 @@ export function useConsole(initialLogs: readonly string[] = []) {
     setSearchTerm,
     autoScroll,
     setAutoScroll,
-    clearLogs,
+    clearLogs
   };
 }

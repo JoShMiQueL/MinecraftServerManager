@@ -1,4 +1,4 @@
-export type FontSize = "xs" | "sm" | "base";
+export type FontSize = 'xs' | 'sm' | 'base';
 
 export interface FontSizeOption {
   readonly value: FontSize;
