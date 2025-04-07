@@ -6,7 +6,7 @@ import {
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
 import { Moon, Sun } from 'lucide-react';
-import { useTheme } from './theme-provider';
+import { useTheme } from './ThemeProvider';
 
 interface ThemeSelectorProps extends React.ComponentProps<typeof DropdownMenu> {
   className?: string;

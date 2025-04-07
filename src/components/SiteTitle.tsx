@@ -6,8 +6,8 @@ interface SiteTitleProps extends React.ComponentProps<'div'> {
 export function SiteTitle({ title, subtitle, ...props }: SiteTitleProps) {
   return (
     <div {...props}>
-      <h3 className="text-3xl font-bold">{title}</h3>
-      <p className="text-muted-foreground">{subtitle}</p>
+      <h3 className="text-3xl font-bold leading-none tracking-tight">{title}</h3>
+      <p className="text-muted-foreground mt-1">{subtitle}</p>
     </div>
   );
 }

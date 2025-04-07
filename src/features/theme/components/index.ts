@@ -1,2 +1,2 @@
-export { ThemeProvider, useTheme } from './theme-provider';
-export { ThemeSelector } from './theme-selector';
+export { ThemeProvider, useTheme } from './ThemeProvider';
+export { ThemeSelector } from './ThemeSelector';
