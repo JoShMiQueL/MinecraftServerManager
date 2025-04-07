@@ -125,5 +125,6 @@
   }
   #root {
     @apply min-h-screen;
+    @apply p-4
   }
 }
